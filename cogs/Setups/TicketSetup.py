@@ -107,5 +107,5 @@ class TicketModRoles(discord.ui.View):
                 role2 = interaction.guild.get_role(role)
                 return await interaction.response.send_message(f"{role2.mention} Rolle ist schon in der Liste!", ephemeral=True)
             else: 
-                config.DB.tickets.update_one({"_id": "settings"}, {"$push": {"IGNORE_CLOSE": role}})
+                config.DB.tickets.update_one({"_id": "settings"}, {"$push": {"IGNORE_CLOSE": role.id}})
                 await ticket.log_channel_check(interaction=interaction, db=config.DB.tickets, view=TicketModRoles())
